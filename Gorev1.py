@@ -161,7 +161,7 @@ def red_detect(imageFrame):
 
     for pic, contour in enumerate(contours):
         area = cv2.contourArea(contour) # Computes contour area
-        areaMin = 300 # Minimum area for contour
+        areaMin = 250 # Minimum area for contour
         if (area > areaMin): # Checks for minimum contour area
 
             x, y, w, h = cv2.boundingRect(contour) # Gets contours dimensions
