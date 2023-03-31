@@ -150,8 +150,8 @@ def red_detect(imageFrame):
 
     hsvFrame = cv2.cvtColor(imageFrame, cv2.COLOR_BGR2HSV)#Converts cam feed to HSV space
 
-    red_lower = np.array([160, 121, 190], np.uint8) # Lower boundary for red mask
-    red_upper = np.array([179, 255, 255], np.uint8) # Upper boundary for red mask
+    red_lower = np.array([155, 105, 0], np.uint8) # Lower boundary for red mask
+    red_upper = np.array([179, 194, 230], np.uint8) # Upper boundary for red mask
 
     red_mask = cv2.inRange(hsvFrame, red_lower, red_upper) # Apply red mask to HSV image
 
@@ -161,7 +161,7 @@ def red_detect(imageFrame):
 
     for pic, contour in enumerate(contours):
         area = cv2.contourArea(contour) # Computes contour area
-        areaMin = 250 # Minimum area for contour
+        areaMin = 150 # Minimum area for contour
         if (area > areaMin): # Checks for minimum contour area
 
             x, y, w, h = cv2.boundingRect(contour) # Gets contours dimensions
@@ -209,8 +209,8 @@ def yellow_detect(imageFrame):
 
     hsvFrame = cv2.cvtColor(imageFrame, cv2.COLOR_BGR2HSV) #Converts cam feed to HSV space
 
-    yellow_lower = np.array([21, 27, 214], np.uint8) # Lower boundary for yellow mask
-    yellow_upper = np.array([41,93, 255], np.uint8)  # Lower boundary for yellow mask
+    yellow_lower = np.array([0, 109, 71], np.uint8) # Lower boundary for yellow mask
+    yellow_upper = np.array([36,255, 255], np.uint8)  # Lower boundary for yellow mask
 
     yellow_mask = cv2.inRange(hsvFrame, yellow_lower, yellow_upper) # Apply yellow mask to HSV image
 
@@ -244,7 +244,7 @@ def yellow_detect(imageFrame):
                             fontFace=1, fontScale=1, color=(110, 57, 4), thickness=1)
                 set_vel_vec(0,0)  # Stops vehicle if target is in deadzone
                 yellow_counter+=1
-                if yellow_counter>100:
+                if yellow_counter>50:
                     print("Landing Zone Confirmed. Landing")
                     vehicle.mode=VehicleMode("LAND")
                     end_flag=True
