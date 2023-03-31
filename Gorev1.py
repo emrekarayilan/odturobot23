@@ -150,7 +150,7 @@ def red_detect(imageFrame):
 
     hsvFrame = cv2.cvtColor(imageFrame, cv2.COLOR_BGR2HSV)#Converts cam feed to HSV space
 
-    red_lower = np.array([0, 130, 160], np.uint8) # Lower boundary for red mask
+    red_lower = np.array([160, 121, 190], np.uint8) # Lower boundary for red mask
     red_upper = np.array([179, 255, 255], np.uint8) # Upper boundary for red mask
 
     red_mask = cv2.inRange(hsvFrame, red_lower, red_upper) # Apply red mask to HSV image

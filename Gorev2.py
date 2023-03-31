@@ -19,7 +19,7 @@ print("vehicle is connected")
 
 
 # --- Mission Control Variables ---
-alt = 1  # Mission altitude
+alt = 4  # Mission altitude
 resolution = 180 # Resolution of moving pattern
 starting_heading = vehicle.heading
 r = 0.15 # Radius of inner circle defined for the movement pattern
@@ -29,7 +29,7 @@ clockwise = -1 # Clockwise motion of the pattern
 c_clockwise = 1 # Counterclockwise motion of the pattern
 
 vel_time = 0.04 # Determines time interval between MAV Commands
-vel_magnitude_constant = 1 # Scales the size of one pattern
+vel_magnitude_constant = 0.9 # Scales the size of one pattern
 x_const = 0.8 # Scales only ax of the pattern
 y_const = 1 # Scales only ay of the pattern
 
@@ -114,7 +114,7 @@ def pattern_creator(r,b,resolution,clockwise,vel_const):
 
         """
         Calculating required velocity to achieve proper position of next iteration of pattern.
-        As you might see, this function is the derivative of the position function. 
+        As you might see, this function is the derivative of the position function.
         """
 
         y_vel = (r - b * math.cos(t)) * vel_const * y_const
@@ -126,7 +126,7 @@ def pattern_creator(r,b,resolution,clockwise,vel_const):
 
         """
         In ideal situation, in next iteration the vehicle will be at current_coordinate coordintes. By using this coordinate
-        required heading to look at center of the circle could be found. 
+        required heading to look at center of the circle could be found.
         """
 
         current_coordinate = [x_pose,y_pose]
@@ -164,19 +164,19 @@ def draw_pattern_vel_ned(vel_list,rotation,count):
 
 
 def do_mission_vel_ned(pattern,start_heading):
-    draw_pattern_vel_ned(pattern, start_heading + 0, 5)
+    draw_pattern_vel_ned(pattern, start_heading + 0, 4)
     print(f"First line to forward completed, curve starterd")
     draw_pattern_vel_ned(pattern, start_heading + 45, 1)
     print(f"Curve of 1m radius circle done, going to straight line to right")
-    draw_pattern_vel_ned(pattern, start_heading + 90, 3)
+    draw_pattern_vel_ned(pattern, start_heading + 90,1)
     print(f"Straight line to right done, going straight line to down")
-    draw_pattern_vel_ned(pattern, start_heading + 180, 6)
+    draw_pattern_vel_ned(pattern, start_heading + 180, 4)
     print(f"Straight line to down done, first curve of second circle started")
     draw_pattern_vel_ned(pattern, start_heading + 135, 2)
     print(f"First curve of 2m radius circle done, second curve of the circle started")
     draw_pattern_vel_ned(pattern, start_heading + 45, 2)
     print(f"Second curve of 2m radius circle done, last up line started")
-    draw_pattern_vel_ned(pattern, start_heading + 0, 6)
+    draw_pattern_vel_ned(pattern, start_heading + 0, 4)
     print(f"Last straight line to front done, mission ended.landing")
 
 
