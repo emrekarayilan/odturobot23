@@ -30,7 +30,7 @@ c_clockwise = 1 # Counterclockwise motion of the pattern
 
 vel_time = 0.04 # Determines time interval between MAV Commands
 vel_magnitude_constant = 0.9 # Scales the size of one pattern
-x_const = 0.8 # Scales only ax of the pattern
+x_const = 0.7 # Scales only ax of the pattern
 y_const = 1 # Scales only ay of the pattern
 
 
@@ -160,24 +160,24 @@ def draw_pattern_vel_ned(vel_list,rotation,count):
     for j in range(0,count):
         for i in range(0,resolution):
             set_ned_velocity_heading(pattern_vel[i][0], pattern_vel[i][1], 0, pattern_vel[i][2], 1)
-        print(f"pattern {j} ended")
+        print(f"\n\n\n PATTERN {j+1} ENDED \n\n\n")
 
 
 def do_mission_vel_ned(pattern,start_heading):
-    draw_pattern_vel_ned(pattern, start_heading + 0, 4)
-    print(f"First line to forward completed, curve starterd")
+    draw_pattern_vel_ned(pattern, start_heading + -5, 6)
+    print(f"\n\nFirst line to forward completed, curve starterd\n\n")
     draw_pattern_vel_ned(pattern, start_heading + 45, 1)
-    print(f"Curve of 1m radius circle done, going to straight line to right")
-    draw_pattern_vel_ned(pattern, start_heading + 90,1)
-    print(f"Straight line to right done, going straight line to down")
-    draw_pattern_vel_ned(pattern, start_heading + 180, 4)
-    print(f"Straight line to down done, first curve of second circle started")
+    print(f"\n\nCurve of 1m radius circle done, going to straight line to right\n\n")
+    draw_pattern_vel_ned(pattern, start_heading + 90,2)
+    print(f"\n\nStraight line to right done, going straight line to down\n\n")
+    draw_pattern_vel_ned(pattern, start_heading + 180, 6)
+    print(f"\n\nStraight line to down done, first curve of second circle started\n\n")
     draw_pattern_vel_ned(pattern, start_heading + 135, 2)
-    print(f"First curve of 2m radius circle done, second curve of the circle started")
+    print(f"\n\nFirst curve of 2m radius circle done, second curve of the circle started\n\n")
     draw_pattern_vel_ned(pattern, start_heading + 45, 2)
-    print(f"Second curve of 2m radius circle done, last up line started")
-    draw_pattern_vel_ned(pattern, start_heading + 0, 4)
-    print(f"Last straight line to front done, mission ended.landing")
+    print(f"\n\nSecond curve of 2m radius circle done, last up line started\n\n")
+    draw_pattern_vel_ned(pattern, start_heading + 0, 6)
+    print(f"\n\nLast straight line to front done, mission ended.Landing\n\n")
 
 
 if __name__ == '__main__':
